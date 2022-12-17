@@ -1,0 +1,19 @@
+{
+  "name": "french-phrases",
+  "version": "1.0.0",
+  "description": "Revise French phrases (or any phrases you input) by rote learning.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R2D2VaderBeef/french-phrases.git"
+  },
+  "author": "R2D2VaderBeef",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R2D2VaderBeef/french-phrases/issues"
+  },
+  "homepage": "https://github.com/R2D2VaderBeef/french-phrases#readme"
+}
