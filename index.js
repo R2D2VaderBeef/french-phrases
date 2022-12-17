@@ -32,6 +32,8 @@ app.get("/favicon.ico", (req, res) => {
     res.sendFile(process.cwd() + "/france.ico");
 });
 
+app.use(express.static(process.cwd() + "/public"));
+
 app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {
         res.send("Updating from Git now.");
@@ -46,8 +48,4 @@ app.get("/patch", async (req, res) => {
     else {
         res.status(401).send("Goodbye.");
     }
-});
-
-app.get("/.well-known/acme-challenge/" + process.env.ACMESTRING, (req, res) => {
-    res.send(process.env.ACMECHALLENGE);
 });
