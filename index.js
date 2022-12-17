@@ -46,4 +46,8 @@ app.get("/patch", async (req, res) => {
     else {
         res.status(401).send("Goodbye.");
     }
-})
+});
+
+app.get("/.well-known/acme-challenge/" + process.env.ACMESTRING, (req, res) => {
+    res.send(process.env.ACMECHALLENGE);
+});
