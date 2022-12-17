@@ -32,8 +32,6 @@ app.get("/favicon.ico", (req, res) => {
     res.sendFile(process.cwd() + "/france.ico");
 });
 
-app.use(express.static(process.cwd() + "/public"));
-
 app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {
         res.send("Updating from Git now.");
