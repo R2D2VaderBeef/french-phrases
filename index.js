@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
     res.sendFile(process.cwd() + "/index.html")
 });
 
+app.get("/favicon.ico", (req, res) => {
+    res.sendFile(process.cwd() + "/france.ico");
+});
+
 app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {
         res.send("Updating from Git now.");
