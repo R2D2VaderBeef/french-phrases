@@ -41,16 +41,16 @@ app.use(function (req, res, next) {
 app.get("/", (req, res) => {
     res.sendFile(process.cwd() + "/index.html")
 });
-
+app.get("/higher", (req, res) => {
+    res.sendFile(process.cwd() + "/higher.html")
+});
 app.get("/favicon.ico", (req, res) => {
     res.sendFile(process.cwd() + "/france.ico");
 });
 
 app.use('/fonts', express.static('fonts'));
 app.use('/js', express.static('js'));
-app.get("/phrases", (req, res) => {
-    res.sendFile(process.cwd() + "/higher.json")
-  })
+app.get("/phrases", express.static('phrases'));
 
 app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {

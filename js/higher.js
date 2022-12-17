@@ -11,7 +11,7 @@ let numberOf = 0;
 getPhrases();
 async function getPhrases() {
   console.log("fetching phrases")
-  const response = await fetch("/phrases");
+  const response = await fetch("/phrases/higher.json");
   const resdata = await response.json();
   phrases = resdata;
   console.log("fetched")
