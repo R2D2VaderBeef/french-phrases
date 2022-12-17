@@ -32,7 +32,7 @@ app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {
         res.send("Updating from Git now.");
         console.log("Running git pull now.");
-        await git.pull(["origin", "master"]);
+        await git.pull(["origin", "main"]);
         let hash = await git.revparse(["HEAD"]);
         console.log("Now up-to-date with " + hash.slice(0, 7));
 
