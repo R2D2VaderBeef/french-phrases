@@ -1,1 +1,79 @@
-congrats html works
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>French</title>
+    <style>
+      /* inter-regular - latin-ext_latin */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        src: local(''),
+             url('/fonts/inter-v7-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+             url('/fonts/inter-v7-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      }
+
+      /* inter-700 - latin-ext_latin */
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        src: local(''),
+             url('/fonts/inter-v7-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+             url('/fonts/inter-v7-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      }
+      
+      body {
+        font-family: "Inter", sans-serif;
+        font-size: 1.3rem;
+        text-align: center;
+        background-color: #ededed;
+      }
+      button {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        margin: 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        padding: 3px 12px;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      select {
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        margin: 0.5rem 0.8rem
+      }
+      textarea {
+        font-size: 1.2rem;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
+    <script type="module" src="/js/diff.js"></script>
+    <script src="/js/script.js"></script>
+    
+    <div style="height: 1rem;"></div>
+    <h1>Higher French Revision</h1>
+    <div style="height: 1rem;"></div>
+
+    <p id="status" style="font-size: 1.6rem;">Loading... If it doesn't load in a few seconds, contact me!</p>
+    <form id="main" style="margin-bottom: 0px">
+    </form>
+    <button id="button" onclick="progress()" style="display: none;"></button>
+    <button id="button2" onclick="secondFunc()" style="display: none;"></button>
+    <div id="answerDiff"></div>
+    <p id="switch" style="display: block;"></p>
+
+    <div style="height: 1rem;"></div>
+    <h2>About</h2>
+    <p>This site was created to help people revise for the Higher French Directed Writing exam.</p>
+    <p>I selected some phrases from the Directed Writing booklet, just based on which ones I liked. <br /> Because of this, you should not rely on the site as a complete revision tool. <br /> Also, the topics are taken directly from the booklet, so some phrases aren't in the topic you'd expect.</p>
+    
+    <p>I will also be continuously making improvements to the site.</p>
+    <p>Let me know if you find any issues or errors, or have any feedback!</p>
+  </body>
+</html>
