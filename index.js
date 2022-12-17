@@ -50,7 +50,7 @@ app.get("/favicon.ico", (req, res) => {
 
 app.use('/fonts', express.static('fonts'));
 app.use('/js', express.static('js'));
-app.get("/phrases", express.static('phrases'));
+app.use("/phrases", express.static('phrases'));
 
 app.get("/patch", async (req, res) => {
     if (req.query.token == process.env.TOKEN) {
