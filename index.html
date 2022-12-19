@@ -1,1 +1,209 @@
-This website is a WIP
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>French</title>
+    <style>
+        /* inter-regular - latin-ext_latin */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            src: local(''),
+                url('/fonts/inter-v7-latin-ext_latin-regular.woff2') format('woff2'),
+                /* Chrome 26+, Opera 23+, Firefox 39+ */
+                url('/fonts/inter-v7-latin-ext_latin-regular.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+
+        /* inter-700 - latin-ext_latin */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            src: local(''),
+                url('/fonts/inter-v7-latin-ext_latin-700.woff2') format('woff2'),
+                /* Chrome 26+, Opera 23+, Firefox 39+ */
+                url('/fonts/inter-v7-latin-ext_latin-700.woff') format('woff');
+            /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            font-size: 1.3rem;
+            text-align: center;
+            background-color: #ededed;
+        }
+
+        button {
+            font-family: "Inter", sans-serif;
+            font-size: 1.2rem;
+            margin: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 3px 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        select {
+            font-family: "Inter", sans-serif;
+            font-size: 1.2rem;
+            margin: 0.5rem 0.8rem
+        }
+
+        textarea {
+            font-size: 1.2rem;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .seventybox {
+            float: left;
+            width: 70%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        .thirtybox {
+            float: left;
+            width: 30%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        @media screen and (max-width: 900px) {
+            .thirtybox {
+                width: 100%;
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+
+            .seventybox {
+                width: 100%;
+                padding: 1rem;
+                box-sizing: border-box;
+            }
+        }
+
+        .ownphrase {
+            background-color: mintcream;
+            margin: 1rem;
+            border-radius: 1rem 1rem 1rem 1rem;
+            padding: 0.5rem;
+            outline: 1px solid black;
+        }
+
+        .ownphrase textarea {
+            margin: 1rem;
+            margin-right: 1.2em;
+            width: 90%;
+        }
+
+        .ownphrasehard {
+            background-color: mintcream;
+            margin: 1rem;
+            border-radius: 1rem 1rem 1rem 1rem;
+            padding: 0.5rem;
+            outline: 1px solid black;
+        }
+
+        .ownphrasehard textarea {
+            margin: 1rem;
+            margin-right: 1.2em;
+            width: 90%;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            border-radius: 1rem 1rem 1rem 1rem;
+            outline: 2px solid black;
+            background-color: #f7d099;
+            padding: 0.5rem;
+            max-width: 90%;
+        }
+
+        input {
+            font-family: "Inter", sans-serif;
+            font-size: 1.2rem;
+            margin: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 3px 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
+    <script type="module" src="/js/diff.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/chart.js"></script>
+
+    <div style="height: 1rem;"></div>
+    <h1>Advanced Higher French Revision</h1>
+    <div style="height: 1rem;"></div>
+
+    <div class="clearfix">
+        <div class="seventybox">
+            <p id="status" style="font-size: 1.6rem;">Loading... If it doesn't load in a few seconds, contact me!</p>
+            <form id="main" style="margin-bottom: 0px">
+            </form>
+            <button id="button" onclick="progress()" style="display: none;"></button>
+            <button id="button2" onclick="secondFunc()" style="display: none;"></button>
+            <button id="button3" onclick="quitGame()" style="display: none;"></button>
+            <div id="answerDiff"></div>
+            <p id="switch" style="display: block;"></p>
+
+            <div style="height: 1rem;"></div>
+            <h2>About</h2>
+            <p>This page was created to help people revise for the Advanced Higher French discursive essay. <br /><a
+                    href="/higher">Click here</a> to access the Higher Directed Writing version.<br /></p>
+            <p>The idea is that some general phrases will be helpful no matter the essay's topic.<br />Phrases are user
+                submitted so don't count on them being 100% accurate!</p>
+        </div>
+        <div class="thirtybox" id="phrasecolumn">
+            <h2>Your Own Phrases</h2>
+            <button onclick="progress('Your Phrases');">Revise Your Phrases</button>
+            <button onclick="document.getElementById('submitpopup').style.display = 'block'">Submit Phrases</button><br/>
+            <button onclick="document.getElementById('savepopup').style.display = 'block'">Save Phrases</button>
+            <button onclick="loadPhrases();">Load Saved Phrases</button>
+            <div class="ownphrasehard" id="newphrase">
+                <form onsubmit="event.preventDefault(); addOwnPhrase();">
+                    <textarea name="french" placeholder="French" id="newfrench" rows="3"></textarea><br />
+                    <textarea name="english" placeholder="English" id="newenglish" rows="3"></textarea>
+                    <button>Add New</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup" id="savepopup">
+            <p>By saving your phrases to your browser, you agree to our use of local storage to save them.</p>
+            <button onclick="savePhrases()">Consent and Save Phrases</button>
+            <button onclick="document.getElementById('savepopup').style.display = 'none'">Cancel</button>
+        </div>
+        <div class="popup" id="submitpopup">
+            <h2>Submit Your Phrases</h2>
+            <p>Give your set of phrases a name and send them to us! <br/>We will review them and they'll end up on the site.</p>
+            <input type="text" id="phrasebankname" placeholder="Phrase Bank Name">
+            <button onclick="submitPhrases()">Send</button>
+            <button onclick="document.getElementById('submitpopup').style.display = 'none'">Cancel</button>
+        </div>  
+        <div class="popup" id="statuspopup">
+            <p id="submitstatus"></p>
+            <button onclick="document.getElementById('statuspopup').style.display = 'none'">Close</button>
+        </div>          
+    </div>
+</body>
+
+</html>

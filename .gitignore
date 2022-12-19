@@ -1,3 +1,5 @@
 node_modules/
 .env
 *.mistbot
+phrases/advh.json
+submissions.txt
