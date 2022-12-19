@@ -10,15 +10,15 @@ const http = require('http').Server(app);
 const bodyParser = require("body-parser");
 const axios = require("axios")
 // https
-//const privateKey = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/privkey.pem', 'utf8');
-//const certificate = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/cert.pem', 'utf8');
-//const ca = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/chain.pem', 'utf8');
-//const credentials = {
-//	key: privateKey,
-//	cert: certificate,
-//	ca: ca
-//};
-//const https = require('https').Server(credentials, app);
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/french.invaderj.rocks/chain.pem', 'utf8');
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+const https = require('https').Server(credentials, app);
 
 // git
 const simpleGit = require("simple-git");
@@ -30,9 +30,9 @@ http.listen(80, () => {
   console.log("Listening on port 80");
 });
 
-//https.listen(443, () => {
-//    console.log("Listening on port 443");
-//});
+https.listen(443, () => {
+    console.log("Listening on port 443");
+});
 
 app.use(bodyParser.json());
 
