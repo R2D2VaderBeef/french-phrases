@@ -39,6 +39,11 @@ app.use(bodyParser.json());
 // routes
 app.use(function (req, res, next) {
     console.log("[" + new Date().toLocaleString() + "] [app.use] Route: " + req.url + " | IP: " + req.ip);
+
+    if (!req.secure) {
+        return res.redirect("https://" + req.headers.host + req.url);
+    }
+
     next();
 });
 
